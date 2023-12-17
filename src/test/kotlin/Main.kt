@@ -19,6 +19,7 @@ import kotlin.test.assertTrue
 class Main {
     private val tasks: TasksRepositoryMemory = TasksRepositoryMemory()
     private val name = "test"
+
     private val priority = Priority.HIGH
 
     // arrange
