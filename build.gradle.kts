@@ -10,7 +10,8 @@ val agent: Configuration by configurations.creating {
 }
 
 plugins {
-    kotlin("jvm") version "1.7.20"
+    kotlin("jvm") version "1.9.0"
+    id("net.serenity-bdd.serenity-gradle-plugin") version "4.0.15"
     application
 }
 
@@ -22,28 +23,25 @@ repositories {
 }
 
 dependencies {
-    testImplementation(kotlin("test"))
-    implementation("org.jetbrains.kotlin:kotlin-reflect:1.7.20")
-    // Import allure-bom to ensure correct versions of all the dependencies are used
-    testImplementation(platform("io.qameta.allure:allure-bom:$allureVersion"))
-    // Add necessary Allure dependencies to dependencies section
-    testImplementation("io.qameta.allure:allure-junit5")
-    // Add aspectjweaver dependency
-    agent("org.aspectj:aspectjweaver:${aspectJVersion}")
-    implementation("org.slf4j:slf4j-simple:2.0.9")
+    implementation("net.serenity-bdd:serenity-core:4.0.30")
+    testImplementation("net.serenity-bdd:serenity-junit:4.0.30")
+    testImplementation("net.serenity-bdd:serenity-junit5:4.0.30")
+
+
+    testImplementation("org.jetbrains.kotlin:kotlin-test:1.8.10")
+    implementation("org.jetbrains.kotlin:kotlin-reflect:1.8.10")
+    //allure
+    implementation("com.github.invictum:serenity-allure-integration:1.0.0")
 }
 
 tasks.test {
     useJUnitPlatform()
-    jvmArgs = listOf(
-        "-javaagent:${agent.singleFile}"
-    )
-}
-
-tasks.withType<KotlinCompile> {
-    kotlinOptions.jvmTarget = "1.8"
 }
 
 application {
     mainClass.set("MainKt")
+}
+
+kotlin {
+    jvmToolchain(19)
 }

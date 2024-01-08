@@ -11,15 +11,17 @@ import data.Task
 import data.TasksRepositoryMemory
 import jdk.jfr.Description
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.extension.ExtendWith
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
+
+@ExtendWith()
 
 @Description("Тесты функций TODO")
 class Main {
     private val tasks: TasksRepositoryMemory = TasksRepositoryMemory()
     private val name = "test"
-
     private val priority = Priority.HIGH
 
     // arrange

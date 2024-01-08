@@ -41,7 +41,7 @@ fun uncomplete(repository: TasksRepository) {
     repository.uncompleteTask(id)
 }
 
-fun quit(repository: TasksRepository) {
+fun quit() {
     exitProcess(0)
 }
 
